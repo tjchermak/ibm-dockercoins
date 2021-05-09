@@ -1,0 +1,15 @@
+FROM ruby:alpine
+
+# gem needs this
+RUN apk add build-base
+
+# Ruby needs these gems
+RUN gem install sinatra
+RUN gem install thin
+
+WORKDIR /app
+COPY hasher.rb /app
+
+#CMD ruby hasher.rb
+ENTRYPOINT ["ruby"]
+CMD ["hasher.rb"]
